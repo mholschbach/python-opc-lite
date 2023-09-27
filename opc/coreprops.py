@@ -24,7 +24,6 @@ class PropertyItem(Base):
         """Returns the prefix name of the object eg. 'dc:title'"""
         return self.parent.supported_properties[self._name]
 
-
     @property
     def Value(self):
         """Returns the value i.e. string or datetime object depending on the object"""
@@ -41,6 +40,8 @@ class PropertyItem(Base):
         <core_properties>.Item('creation date').Value = dt_now
         <core_properties>.Item('author').Value = "New Author"
         """
+        if self._name in self.dt_props and not isinstance(newvalue, datetime):
+            raise TypeError("newvalue must be a datetime object for this property")
         if self.e is None:
             e = self.parent.e
             e.append(e.makeelement(e.qn(self.pfxname)))
@@ -49,7 +50,6 @@ class PropertyItem(Base):
             self.e.text = dt.to_w3cdtf(newvalue)
         else:
             self.e.text = newvalue
-
 
 
 class CoreProperties(XmlTypeobjBase):

@@ -3,6 +3,7 @@ from pathlib import Path
 from opc import Package
 from opc.part import Part
 from opc.parser import Parser
+from opc.base import XmlBase
 
 @pytest.fixture
 def data_path():
@@ -72,3 +73,14 @@ def presentation_xml_path(data_path):
 @pytest.fixture
 def core_properties(package):
     return package.core_properties
+
+@pytest.fixture
+def xmlbase_presentation(presentation_xml_path):
+    x = XmlBase()
+    with open(presentation_xml_path) as f:
+        x.read(f)
+    return x
+
+@pytest.fixture
+def xmlbase():
+    return XmlBase()
