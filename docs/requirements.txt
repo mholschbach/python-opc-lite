@@ -1,7 +1,0 @@
-lxml
-furo
-sphinx
-sphinx-copybutton
-sphinx-inline-tabs
-sphinx-removed-in
-sphinxext-opengraph
