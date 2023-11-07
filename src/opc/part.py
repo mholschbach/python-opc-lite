@@ -119,3 +119,19 @@ class Part(PartBase, Base):
         target_rel_uri_str = rels_part.get_target_rel_uri_str(rid)
         related_part_uri_str = self.get_abs_uri_str(target_rel_uri_str)
         return self.parent.get_part(related_part_uri_str)
+
+    def get_related_parts_by_reltype(self, reltype):
+        rels_part = self.get_rels_part()
+        if rels_part is None:
+            return
+        lst = []
+        for rel_uri_str in rels_part.get_lst_target_rel_uri_str(reltype):
+            t = self.parent.get_part(self.get_abs_uri_str(rel_uri_str))
+            lst.append(t)
+        return lst
+
+    def add_relspart(self):
+        from .relspart import RelsPart
+        relspart = self.package.add_part(self.uri.rels, RelsPart.type)
+        relspart.typeobj.init_e()
+        return relspart

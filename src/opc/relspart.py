@@ -13,3 +13,6 @@ class RelsPart(Part):
         :returns: string value of relationship's target value in xml
         """
         return self.typeobj.get_target_rel_uri_str(rid)
+
+    def get_lst_target_rel_uri_str(self, reltype):
+        return self.typeobj.get_lst_target_rel_uri_str(reltype)

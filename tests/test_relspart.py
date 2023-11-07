@@ -1,4 +1,5 @@
 import pytest
+
 from opc.relspart import RelsPart
 
 
@@ -17,3 +18,7 @@ def test_all_rels_parts_class(package):
 ])
 def test_get_target_rel_uri_str(presentation_relspart, rid, expectation):
     assert expectation == presentation_relspart.get_target_rel_uri_str(rid)
+
+
+def test_get_lst_target_rel_uri_str(slide_part):
+    slide_part.get_related_part_by_type("")

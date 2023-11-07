@@ -1,5 +1,7 @@
-from lxml import etree
 from abc import ABC
+
+from lxml import etree
+
 from .parser import Parser
 
 
@@ -34,6 +36,10 @@ class XmlBase():
     def e(self):
         """returns the underlying xml element object"""
         return self._e
+
+    @e.setter
+    def e(self, value):
+        self._e = value
 
     @property
     def parser(self):

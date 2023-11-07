@@ -1,4 +1,5 @@
-from pathlib import PurePosixPath, Path
+from os import path
+from pathlib import Path, PurePosixPath
 
 
 class Uri():
@@ -66,3 +67,7 @@ class Uri():
             (Path(self.str).parent / Path(rel_target_uri_str))
             .resolve().relative_to(Path('/').resolve()))
             .as_posix())
+
+    def get_rel(self, abs_target_uri_str):
+        return Path(path.relpath(abs_target_uri_str,
+                                 Path(self.str).parent.as_posix())).as_posix()
