@@ -13,7 +13,7 @@ It is used not only to read and write the packages but also to navigate through 
 ## More information
 
 - [Documentation](https://python-opc-lite.readthedocs.io/)
-  - [Installation](https://python-opc-lite.readthedocs.io/en/latest/installation.html)
+  - [Quickstart](https://python-opc-lite.readthedocs.io/en/latest/quickstart.html)
 - [Contribute](https://python-opc-lite.readthedocs.io/en/latest/contribution.html)
   - [Issues](https://github.com/kascodeo/python-opc-lite/issues)
   - [Pull requests](https://github.com/kascodeo/python-opc-lite/pulls)
