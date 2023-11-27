@@ -1,7 +1,7 @@
 from datetime import datetime
-from .base import (XmlTypeobjBase, Base)
-from .datetime import Dt
 
+from .base import Base, XmlTypeobjBase
+from .datetime import Dt
 
 
 class PropertyItem(Base):

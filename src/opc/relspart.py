@@ -15,4 +15,10 @@ class RelsPart(Part):
         return self.typeobj.get_target_rel_uri_str(rid)
 
     def get_lst_target_rel_uri_str(self, reltype):
+        """Gets the list of relative uri str of the target part related by the
+        given reltype
+
+        :param reltype: str value
+        :returns: list of Target attribute values of parts related by reltype
+        """
         return self.typeobj.get_lst_target_rel_uri_str(reltype)

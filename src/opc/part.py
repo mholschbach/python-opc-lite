@@ -74,15 +74,16 @@ class Part(PartBase, Base):
 
         :returns: |relspart| object or None
 
-    Example::
+        Example::
 
-        from opc import Package
-        package = Package("/some/path/to/presentation.pptx").read()
-        presentation_part = package.get_part('/ppt/presentation.xml')
-        print(presentation_part.uri.str)    # '/ppt/presentation.xml'
+            from opc import Package
+            package = Package("/some/path/to/presentation.pptx").read()
+            presentation_part = package.get_part('/ppt/presentation.xml')
+            print(presentation_part.uri.str)    # '/ppt/presentation.xml'
 
-        presentation_relspart = presentation_part.get_rels_part()
-        print(presentation_relspart.uri.str) # /ppt/_rels/presentation.xml.rels
+            presentation_relspart = presentation_part.get_rels_part()
+            print(presentation_relspart.uri.str) 
+                # /ppt/_rels/presentation.xml.rels
         """
         return self.parent.get_part(self.uri.rels)
 
@@ -93,10 +94,10 @@ class Part(PartBase, Base):
         :param target_rel_uri_str: relative uri string value of a target part
         :returns: absolute uri string value of a target part
 
-    Example::
+        Example::
 
-        abs_uri_str = presentation_part.get_abs_uri_str('slides/slide1.xml)
-        print(abs_uri_str)      # /ppt/slides/slide1.xml
+            abs_uri_str = presentation_part.get_abs_uri_str('slides/slide1.xml)
+            print(abs_uri_str)      # /ppt/slides/slide1.xml
         """
         if target_rel_uri_str:
             return self.uri.get_abs(target_rel_uri_str)
@@ -108,10 +109,10 @@ class Part(PartBase, Base):
         :param rid: relationship id
         :returns: the related |part| of the current part from the relationship
 
-    Example::
+        Example::
 
-        related_part = presentation_part.get_related_part('rId2')
-        print(related_part.uri.str)     # /ppt/slides/slide1.xml
+            related_part = presentation_part.get_related_part('rId2')
+            print(related_part.uri.str)     # /ppt/slides/slide1.xml
         """
         rels_part = self.get_rels_part()
         if rels_part is None:
@@ -121,6 +122,13 @@ class Part(PartBase, Base):
         return self.parent.get_part(related_part_uri_str)
 
     def get_related_parts_by_reltype(self, reltype):
+        """Gets list of parts that are related by given reltype wrt to current
+        part
+
+        :param reltype: str value
+        :return: list of related parts
+
+        """
         rels_part = self.get_rels_part()
         if rels_part is None:
             return
@@ -131,6 +139,12 @@ class Part(PartBase, Base):
         return lst
 
     def add_relspart(self):
+        """adds the relspart to the package for this part. It also initializes
+        the xml for the relspart. Do not call this method if relspart already
+        exists for the current part.
+
+        :returns: relspart object
+        """
         from .relspart import RelsPart
         relspart = self.package.add_part(self.uri.rels, RelsPart.type)
         relspart.typeobj.init_e()

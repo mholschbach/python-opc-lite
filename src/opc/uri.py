@@ -69,5 +69,14 @@ class Uri():
             .as_posix())
 
     def get_rel(self, abs_target_uri_str):
+        """Returns the relative uri str value from the given absolute uri str
+        of the target part. Relative with respect to the current uri
+
+        :param abs_target_uri_str: absolute uri str of target part
+        :returns: str value of the relative uri
+        """
         return Path(path.relpath(abs_target_uri_str,
                                  Path(self.str).parent.as_posix())).as_posix()
+
+    def __str__(self):
+        return self.str

@@ -30,6 +30,12 @@ class Relationships(XmlTypeobjBase):
                 return r.get('Target')
 
     def get_lst_target_rel_uri_str(self, reltype):
+        """Gets the list of relative uri of the target related by the given
+        reltype
+
+        :param reltype: str value
+        :returns: list of Target attribute values of parts related by reltype
+        """
         lst = []
         for r in self.e:
             if r.get('Type') == reltype:
@@ -37,10 +43,24 @@ class Relationships(XmlTypeobjBase):
         return lst
 
     def init_e(self):
+        """Add Relationships xml to the self.part object
+        """
         parser = Parser()
         self.e = parser.makeelement('Relationships', nsmap={None: self.xmlns})
 
     def add_relation(self, type, target, target_mode=None):
+        """Adds Relationships element to the xml. Assigns new Id and sets the
+        Type, Target, TargetMode attributes to the element.
+
+        :param type: str value of reltype
+        :param target: relative uri str value of the part target wrt to part
+            of this relspart object
+        :param target_mode: optional param. Default value is None. No attribute
+            TargetMode sets to the Relationships element if it is None. The
+            value passed must be str type
+        :returns: str value of the new id assigned to the element
+        """
+
         parser = Parser()
         id = self.get_next_id()
         attrib = {'Id': id, 'Type': type, 'Target': target}
@@ -52,6 +72,9 @@ class Relationships(XmlTypeobjBase):
         return id
 
     def get_next_id(self):
+        """Returns the new available id for the new relationship element
+        :returns: str value of the new available id
+        """
         used = 0
         for r in self.e:
             id = int(r.get('Id').replace('rId', ''))
