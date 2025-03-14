@@ -45,6 +45,7 @@ def test_package_write_all_items_count_tally(package, data_path):
         os.remove(path)
     package.write(path)
     pkg = Package(path).read()
+    os.remove(path)
     assert len(package._parts) == len(pkg._parts)
 
 
