@@ -2,6 +2,9 @@
 
 python-opc-lite is a light weight python library for Open Package Convention used for Open Office XML packages
 
+![RUFF](https://github.com/mholschbach/python-opc-lite/actions/workflows/ruff.yml/badge.svg)
+![TOX](https://github.com/mholschbach/python-opc-lite/actions/workflows/tox.yml/badge.svg)
+![Dependabot](https://github.com/mholschbach/python-opc-lite/actions/workflows/dependabot/dependabot-updates/badge.svg)
 
 ## Overview
 
