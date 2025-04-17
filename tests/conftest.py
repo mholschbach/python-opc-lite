@@ -1,59 +1,64 @@
-import pytest
 from pathlib import Path
+
+import pytest
+
 from opc import Package
-from opc.part import Part
-from opc.parser import Parser
 from opc.base import XmlBase
+from opc.parser import Parser
+from opc.part import Part
+from opc.types import Types
 
 
 @pytest.fixture
-def data_path():
+def data_path() -> Path:
     return Path(__file__).parent / "data"
 
 
 @pytest.fixture
-def pptx_path(data_path):
+def pptx_path(data_path: Path) -> Path:
     return data_path / "blank.pptx"
 
 
 @pytest.fixture
-def package(pptx_path):
+def package(pptx_path: Path) -> Path:
     return Package(pptx_path).read()
 
 
 @pytest.fixture
-def types(package):
+def types(package: Package) -> Types:
     return package.types
 
 
 @pytest.fixture
-def presentation_uri_str():
-    return '/ppt/presentation.xml'
+def presentation_uri_str() -> str:
+    return "/ppt/presentation.xml"
 
 
 @pytest.fixture
-def thumbnail_url_str():
+def thumbnail_url_str() -> str:
     return "/docProps/thumbnail.jpeg"
 
 
 @pytest.fixture
-def presentation_type():
-    return ("application/vnd.openxmlformats-officedocument.presentationml"
-            ".presentation.main+xml")
+def presentation_type() -> str:
+    return (
+        "application/vnd.openxmlformats-officedocument.presentationml"
+        ".presentation.main+xml"
+    )
 
 
 @pytest.fixture
-def thumbnail_type():
+def thumbnail_type() -> str:
     return "image/jpeg"
 
 
 @pytest.fixture
-def part():
+def part() -> Part:
     return Part(None, "/some/uri.def", "http://some/default/type")
 
 
 @pytest.fixture
-def presentation_part(package, presentation_uri_str):
+def presentation_part(package: Package, presentation_uri_str: str) -> Part:
     return package.get_part(presentation_uri_str)
 
 
@@ -68,32 +73,32 @@ def presentation_relstypeobj(presentation_relspart):
 
 
 @pytest.fixture
-def all_parts(package):
+def all_parts(package: Package):
     return package._parts.values()
 
 
 @pytest.fixture
-def slide_part(package):
-    return package.get_part('/ppt/slides/slide1.xml')
+def slide_part(package: Package):
+    return package.get_part("/ppt/slides/slide1.xml")
 
 
 @pytest.fixture
-def parser():
+def parser() -> Parser:
     return Parser()
 
 
 @pytest.fixture
-def presentation_xml_path(data_path):
+def presentation_xml_path(data_path: Path) -> Path:
     return data_path / "presentation.xml"
 
 
 @pytest.fixture
-def core_properties(package):
+def core_properties(package: Package):
     return package.core_properties
 
 
 @pytest.fixture
-def xmlbase_presentation(presentation_xml_path):
+def xmlbase_presentation(presentation_xml_path: str) -> XmlBase:
     x = XmlBase()
     with open(presentation_xml_path) as f:
         x.read(f)

@@ -24,12 +24,12 @@ def test_all_parts_have_typeobj_property(all_parts):
 
 def test_all_parts_have_read_method(all_parts):
     for part in all_parts:
-        assert hasattr(part, "read") and callable(getattr(part, 'read'))
+        assert hasattr(part, "read") and callable(getattr(part, "read"))
 
 
 def test_all_parts_have_write_method(all_parts):
     for part in all_parts:
-        assert hasattr(part, "write") and callable(getattr(part, 'write'))
+        assert hasattr(part, "write") and callable(getattr(part, "write"))
 
 
 def test_get_rels_part(presentation_part, presentation_relspart):
@@ -37,9 +37,8 @@ def test_get_rels_part(presentation_part, presentation_relspart):
 
 
 def test_get_abs_uri_str(presentation_part, slide_part):
-    assert presentation_part.get_abs_uri_str('slides/slide1.xml') == \
-        slide_part.uri.str
+    assert presentation_part.get_abs_uri_str("slides/slide1.xml") == str(slide_part.uri)
 
 
 def test_get_related_part(presentation_part, slide_part):
-    assert slide_part is presentation_part.get_related_part('rId2')
+    assert slide_part is presentation_part.get_related_part("rId2")
