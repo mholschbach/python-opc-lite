@@ -6,6 +6,7 @@ help:
 	@echo OPTIONS:
 	@echo "  help"
 	@echo "  test"
+	@echo "  mypy"
 	@echo "  docclean"
 	@echo "  docapidoc"
 	@echo "  dochtml"
@@ -18,7 +19,10 @@ help:
 .PHONY = help, test, docclean, docapidoc, dochtml, clean, setup, build, testupload, upload, tox
 
 test:
-	pytest -s -v  tests/
+	poetry run pytest --cov-report term-missing --cov-report html --cov-branch --cov src
+
+mypy:
+	poetry run mypy src
 
 docclean:
 	$(MAKE) -C docs clean
