@@ -10,7 +10,6 @@ requires-python = ">=3.11"
 dependencies = [
   "lxml (>=5.3.2,<6.0.0)",
   "lxml-util (>=1.0.2,<2.0.0)",
-  "types-lxml (>=2025.3.30,<2026.0.0)"
 ]
 
 [tool.poetry]
@@ -22,6 +21,7 @@ pytest-cov = "^6.1.1"
 mypy = "^1.15.0"
 ruff = "^0.11.5"
 tox = "^4.25.0"
+types-lxml = "^2025.3.30"
 
 [build-system]
 requires = ["setuptools>=61.0"]
