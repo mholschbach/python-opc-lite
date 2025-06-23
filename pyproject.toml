@@ -16,7 +16,7 @@ dependencies = [
 packages = [{include = "src"}]
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.4.0"
+pytest = "^8.4.1"
 pytest-cov = "^6.2.1"
 mypy = "^1.16.0"
 ruff = "^0.11.13"
