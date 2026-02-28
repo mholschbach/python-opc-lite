@@ -21,7 +21,7 @@ pytest-cov = "^7.0.0"
 mypy = "^1.19.1"
 ruff = "^0.15.1"
 tox = "^4.36.0"
-types-lxml = "^2026.1.1"
+types-lxml = "^2026.2.16"
 
 [build-system]
 requires = ["setuptools>=61.0"]
