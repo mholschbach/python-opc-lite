@@ -18,7 +18,7 @@ packages = [{include = "src"}]
 [tool.poetry.group.dev.dependencies]
 pytest = "^9.0.2"
 pytest-cov = "^7.1.0"
-mypy = "^1.19.1"
+mypy = "^1.20.0"
 ruff = "^0.15.8"
 tox = "^4.52.0"
 types-lxml = "^2026.2.16"
