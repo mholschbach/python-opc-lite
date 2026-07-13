@@ -20,7 +20,7 @@ pytest = "^9.1.1"
 pytest-cov = "^7.1.0"
 mypy = "^2.3.0"
 ruff = "^0.15.20"
-tox = "^4.56.1"
+tox = "^4.56.4"
 types-lxml = "^2026.2.16"
 
 [build-system]
