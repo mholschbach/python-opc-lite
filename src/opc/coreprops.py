@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import ClassVar
 
 from lxml import etree
 
@@ -16,7 +17,7 @@ class PropertyItem(Base):
     :param name: name of the property
     """
 
-    dt_props = ["last print date", "creation date", "last save time"]
+    dt_props : ClassVar[list[str]] = ["last print date", "creation date", "last save time"]
     """properties that are datetime related"""
 
     def __init__(self, parent: XmlTypeobjBase, name: str):
@@ -101,7 +102,7 @@ class CoreProperties(XmlTypeobjBase):
     """
 
     type = "application/vnd.openxmlformats-package.core-properties+xml"
-    supported_properties = {
+    supported_properties : ClassVar[dict[str, str]] = {
         "title": "dc:title",
         "subject": "dc:subject",
         "author": "dc:creator",
