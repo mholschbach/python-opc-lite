@@ -86,6 +86,5 @@ class Relationships(XmlTypeobjBase):
         for r in self.e:
             if (id_string := r.get("Id")) is not None:
                 id = int(id_string.replace("rId", ""))
-                if id > used:
-                    used = id
+                used = max(used, id)
         return "rId" + str(used + 1)

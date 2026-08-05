@@ -40,9 +40,9 @@ class Package(Base):
         |rels| and |cp| part"""
         super().__init__(parent)
         self._path = path
-        self._parts = dict()
+        self._parts = {}
         self._types = Types(self)
-        self._part_hooks = dict()
+        self._part_hooks = {}
         self.register_part_hook(RelsPart.type, Relationships)
         self.register_part_hook(CoreProperties.type, CoreProperties)
 

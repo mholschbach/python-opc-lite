@@ -22,20 +22,17 @@ class Types(XmlBase, Base):
         :param uri_str: string value of the part's uri
         """
         if self.e is None:
-            return None
+            return
 
         for e in self.e.findall("{*}Override"):
             if e.get("PartName") == uri_str:
                 if (parent := e.getparent()) is not None:
                     parent.remove(e)
-                return None
+                return
         uri_extension = Uri(uri_str).ext
         for e in self.e.findall("{*}Default"):
-            if (extension := e.get("Extension")) is not None:
-                if extension.lower() == uri_extension.lower():
-                    if (parent := e.getparent()) is not None:
-                        parent.remove(e)
-                return None
+            if (extension := e.get("Extension")) is not None and extension.lower() == uri_extension.lower() and (parent := e.getparent()) is not None and parent.remove(e):
+                    return
 
     def get_type(self, uri_str: str) -> str | None:
         """Returns the type of given uri_str. First Override elements in xml
@@ -53,9 +50,8 @@ class Types(XmlBase, Base):
 
         uri_extension = Uri(uri_str).ext
         for e in self.e.findall("{*}Default"):
-            if (extension := e.get("Extension")) is not None:
-                if extension.lower() == uri_extension.lower():
-                    return e.get("ContentType")
+            if (extension := e.get("Extension")) is not None and extension.lower() == uri_extension.lower():
+                return e.get("ContentType")
 
         return None
 
@@ -67,7 +63,7 @@ class Types(XmlBase, Base):
         attrib = {"Extension": part.uri.ext, "ContentType": part.type}
 
         if self.e is None:
-            return None
+            return
 
         for e in self.e.findall("{*}Default"):
             if e.attrib == attrib:
@@ -82,7 +78,7 @@ class Types(XmlBase, Base):
         attrib = {"PartName": str(part.uri), "ContentType": part.type}
 
         if self.e is None:
-            return None
+            return
 
         for e in self.e.findall("{*}Override"):
             if e.attrib == attrib:

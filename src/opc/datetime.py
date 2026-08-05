@@ -1,5 +1,5 @@
+from datetime import UTC
 from datetime import datetime as _datetime
-from datetime import timezone as _timezone
 
 
 class Dt:
@@ -14,7 +14,7 @@ class Dt:
         :param dt_obj: timezone aware datetime.datetime object
         :returns: str value of dt_obj in w3cdtf format
         """
-        dt_obj = dt_obj.astimezone(_timezone.utc)
+        dt_obj = dt_obj.astimezone(UTC)
         string = _datetime.isoformat(dt_obj, timespec="seconds").replace("+00:00", "Z")
         return string if string.endswith("Z") else string + "Z"
 
