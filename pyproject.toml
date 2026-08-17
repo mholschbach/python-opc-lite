@@ -19,7 +19,7 @@ packages = [{include = "src"}]
 pytest = "^9.1.1"
 pytest-cov = "^7.1.0"
 mypy = "^2.3.0"
-ruff = "^0.16.1"
+ruff = "^0.16.3"
 tox = "^4.58.0"
 types-lxml = "^2026.2.16"
 
